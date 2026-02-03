@@ -13,5 +13,6 @@ namespace Version01
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
