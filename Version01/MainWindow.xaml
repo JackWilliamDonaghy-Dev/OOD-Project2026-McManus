@@ -47,23 +47,33 @@
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="94*"/>
-                        <RowDefinition Height="92*"/>
-                        <RowDefinition Height="216*"/>
-                        <RowDefinition Height="134*"/>
-                        <RowDefinition Height="67*"/>
+                        <RowDefinition Height="107*"/>
+                        <RowDefinition Height="105*"/>
+                        <RowDefinition Height="105*"/>
+                        <RowDefinition Height="293*"/>
+                        <RowDefinition Height="76*"/>
                     </Grid.RowDefinitions>
 
-                    <Label  Content="New Pulse Details" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="24" Margin="0,24,0,0" Grid.ColumnSpan="2" Height="40" Width="196"/>
+                    <Label  Content="New Pulse Details" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="24" Margin="0,24,0,0" Height="40" Width="196"/>
 
-                    <StackPanel Grid.Row="1">
+                    <StackPanel Margin="0,107,0,0" Grid.RowSpan="2">
                         <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="40,0,0,0" />
                         <TextBox Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap" Text="Jack Donaghy" VerticalAlignment="Top" FontSize="16" Width="240"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="2">
+                    <StackPanel Grid.Row="1" Margin="0,105,0,0" Grid.RowSpan="2">
                         <Label Content="Frequency"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="40,0,0,0"/>
                         <materialDesign:NumericUpDown Width="240"/>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="2" Margin="0,105,0,0" Grid.RowSpan="2">
+                        <Label Content="Messages"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="40,0,0,0"/>
+                        <!--A space that can have text boxes added-->
+                        <StackPanel x:Name="aaa">
+                            
+                        </StackPanel>
+                        <Button Content="New Message" Click="Button_Click"/>
+
                     </StackPanel>
 
 
