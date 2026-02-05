@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Schema;
 
 namespace Version01
 {
@@ -25,11 +26,26 @@ namespace Version01
             InitializeComponent();
         }
 
+
+        // Frequency logic
+        private void btnFreqSub_Click(object sender, RoutedEventArgs e)
+        {
+            bool total = int.TryParse(txtbxFreq.Text, out int freq);
+            txtbxFreq.Text = (freq - 1).ToString();
+        }
+
+        private void btnFreqAdd_Click(object sender, RoutedEventArgs e)
+        {
+            bool total = int.TryParse(txtbxFreq.Text, out int freq);
+            txtbxFreq.Text = (freq + 1).ToString();
+        }
+        // Messages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Window1 win1 = new Window1();
             win1.Owner = this;
             win1.ShowDialog();
         }
+
     }
 }
