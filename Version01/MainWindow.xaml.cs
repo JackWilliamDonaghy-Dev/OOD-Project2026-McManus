@@ -26,6 +26,10 @@ namespace Version01
             InitializeComponent();
         }
 
+        //error logging initialization
+        log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+
 
         // Frequency logic
         private void btnFreqSub_Click(object sender, RoutedEventArgs e)
