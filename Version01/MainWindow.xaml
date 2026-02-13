@@ -29,7 +29,10 @@
 
                 <Grid>
                     <ListBox x:Name="lsbxPeople" SelectionChanged="lsbxPeople_SelectionChanged"/>
+                    <Button Content="Contacted" Width="340" HorizontalAlignment="Center" Click="btnContacted_Click" VerticalAlignment="Bottom" Grid.Row="5" Margin="20" Style="{DynamicResource MaterialDesignRaisedSecondaryButton}"/>
+
                 </Grid>
+                
             </TabItem>
 
             <TabItem>

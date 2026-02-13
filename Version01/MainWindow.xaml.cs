@@ -99,17 +99,25 @@ namespace Version01
             return difference.TotalDays;
         }
 
-        private void lsbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnContacted_Click(object sender, RoutedEventArgs e)
         {
-            Person chosenPerson = lsbxPeople.SelectedItem as Person;
-            if (chosenPerson != null)
+            Person person = lsbxPeople.SelectedItem as Person;
+            if (person != null)
             {
 
             }
             else
             {
-
+                person.LastContacted = DateTime.Now;
             }
+        }
+
+        private void lsbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // new window and connection set
+            PersonDetailsWindow win2 = new PersonDetailsWindow();
+            win2.Owner = this;
+            win2.ShowDialog();
         }
     }
 }

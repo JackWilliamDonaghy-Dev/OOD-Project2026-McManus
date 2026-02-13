@@ -23,5 +23,19 @@ namespace Version01
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = this.Owner as MainWindow;
+
+            Person person = main.lsbxPeople.SelectedItem as Person;
+            txtblckName.Text = person.Name;
+            lsbxMessages.ItemsSource = person.Messages;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

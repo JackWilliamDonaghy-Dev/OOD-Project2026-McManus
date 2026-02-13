@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Version01"
         mc:Ignorable="d"
         Title="PersonDetailsWindow" Height="400" Width="300"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        Loaded="Window_Loaded">
     <Grid>
 
         <StackPanel Margin="20">
