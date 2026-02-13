@@ -32,7 +32,6 @@ namespace Version01
 
         internal ObservableCollection<string> messages = new ObservableCollection<string>();
         internal ObservableCollection<Person> people = new ObservableCollection<Person>();
-        internal ObservableCollection<Person> sorted = new ObservableCollection<Person>();
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

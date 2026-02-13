@@ -67,7 +67,7 @@ namespace Version01
 
         public override string ToString()
         {
-            return $"{Name} - {Frequency}";
+            return $"{this.Name} - {this.Frequency}";
         }
 
 

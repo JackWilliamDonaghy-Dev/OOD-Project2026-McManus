@@ -80,7 +80,7 @@
                         <Button Content="New Message" Width="340" Click="Button_Click"/>
                     </StackPanel>
 
-                    <Button Content="Add Person" Width="340" HorizontalAlignment="Center" Click="btnAddPerson_Click" VerticalAlignment="Bottom" Grid.Row="5" Margin="20"/>
+                    <Button Content="Add Person" Width="340" HorizontalAlignment="Center" Click="btnAddPerson_Click" VerticalAlignment="Bottom" Grid.Row="5" Margin="20" Style="{DynamicResource MaterialDesignRaisedSecondaryButton}"/>
 
 
 
