@@ -31,6 +31,13 @@ namespace Version01
         log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         internal ObservableCollection<string> messages = new ObservableCollection<string>();
+        internal ObservableCollection<Person> people = new ObservableCollection<Person>();
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            lsbxMessages.ItemsSource = messages;
+            lsbxPeople.ItemsSource = people;
+        }
 
         // Frequency logic
         private void btnFreqSub_Click(object sender, RoutedEventArgs e)
@@ -54,14 +61,23 @@ namespace Version01
             win1.ShowDialog();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            lsbxMessages.ItemsSource = messages;
-
-        }
 
         private void btnAddPerson_Click(object sender, RoutedEventArgs e)
         {
+            // Create person and add to People list on main list page
+            string name = txtbxName.Text;
+            int frequency = int.Parse(txtbxFreq.Text);
+            ObservableCollection<string> personMessages = messages;
+            Person person = new Person(name, frequency, personMessages);
+            people.Add(person);
+
+            //clear/reset add window values
+            txtbxName.Text = "";
+            txtbxFreq.Text = "14";
+            messages.Clear();
+            
+
+
 
         }
     }

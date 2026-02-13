@@ -33,7 +33,7 @@ namespace Version01
         {
             MainWindow main = this.Owner as MainWindow;
 
-            main.messages.Add($"{main.messages.Count + 1}: {txtbxNewMessage.Text}");
+            main.messages.Add(txtbxNewMessage.Text);
             txtbxNewMessage.Clear();
         }
     }

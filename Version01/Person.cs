@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,29 @@ namespace Version01
         public string Name { get; set; }
         public DateTime LastContacted { get; set; }
         public int Frequency { get; set; }
+        public ObservableCollection<string> Messages { get; set; }
         
 
-        private int lastID = 1;
+        protected int lastID = 1;
 
-        public Person(string name, int frequency, DateTime lastContacted)
+        public Person(string name, int frequency, ObservableCollection<string> messages, DateTime lastContacted)
         {
             Name = name;
             Frequency = frequency;
+            Messages = messages;
             LastContacted = lastContacted;
 
+            PersonID = lastID;
+            lastID++;
+        }
+
+        public Person(string name, int frequency, ObservableCollection<string> messages)
+        {
+            Name = name;
+            Frequency = frequency;
+            Messages = messages;
+
+            LastContacted = DateTime.Now;
             PersonID = lastID;
             lastID++;
         }
@@ -32,7 +46,8 @@ namespace Version01
         {
             Name = name;
             Frequency = frequency;
-
+            
+            Messages = new ObservableCollection<string>();
             LastContacted = DateTime.Now;
             PersonID = lastID;
             lastID++;
@@ -41,6 +56,10 @@ namespace Version01
 
         public Person() { }
 
+        public override string ToString()
+        {
+            return $"{Name} - {Frequency}";
+        }
 
 
     }
