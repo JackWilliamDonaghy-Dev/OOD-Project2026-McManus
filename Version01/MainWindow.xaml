@@ -28,7 +28,7 @@
                 </TabItem.Header>
 
                 <Grid>
-                    <ListBox x:Name="lsbxPeople"/>
+                    <ListBox x:Name="lsbxPeople" SelectionChanged="lsbxPeople_SelectionChanged"/>
                 </Grid>
             </TabItem>
 

@@ -59,7 +59,7 @@ namespace Version01
         {
             
             // new window and connection set
-            Window1 win1 = new Window1();
+            AddMessagesWindow win1 = new AddMessagesWindow();
             win1.Owner = this;
             win1.ShowDialog();
         }
@@ -97,6 +97,19 @@ namespace Version01
             var difference = DateTime.Now - due;
             log.Info($"due -{due} now -{DateTime.Now} difference -{difference}");
             return difference.TotalDays;
+        }
+
+        private void lsbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Person chosenPerson = lsbxPeople.SelectedItem as Person;
+            if (chosenPerson != null)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
