@@ -85,6 +85,8 @@ namespace Version01
                         .ThenBy(p => p.DueDate)
                         .ToList();
             people = new ObservableCollection<Person>(sorted);
+            lsbxPeople.ItemsSource = people;
+
         }
 
         //Manage People list
