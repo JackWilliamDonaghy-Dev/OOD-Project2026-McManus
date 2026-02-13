@@ -21,7 +21,6 @@ namespace Version01
         {
             get
             {
-                if ()
                 return LastContacted.Date.AddDays(Frequency);
             }
         }

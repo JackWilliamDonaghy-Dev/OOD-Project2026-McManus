@@ -32,11 +32,15 @@ namespace Version01
 
         internal ObservableCollection<string> messages = new ObservableCollection<string>();
         internal ObservableCollection<Person> people = new ObservableCollection<Person>();
+        internal ObservableCollection<Person> sorted = new ObservableCollection<Person>();
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             lsbxMessages.ItemsSource = messages;
             lsbxPeople.ItemsSource = people;
+
+            
         }
 
         // Frequency logic
@@ -75,10 +79,23 @@ namespace Version01
             txtbxName.Text = "";
             txtbxFreq.Text = "14";
             messages.Clear();
-            
 
+            //Sort people
+            var sorted = people
+                        .OrderByDescending(p => GetUrgency(p))
+                        .ThenBy(p => p.DueDate)
+                        .ToList();
+            people = new ObservableCollection<Person>(sorted);
+        }
 
+        //Manage People list
 
+        private double GetUrgency(Person person)
+        {
+            var due = person.DueDate.Date;
+            var difference = DateTime.Now - due;
+            log.Info($"due -{due} now -{DateTime.Now} difference -{difference}");
+            return difference.TotalDays;
         }
     }
 }

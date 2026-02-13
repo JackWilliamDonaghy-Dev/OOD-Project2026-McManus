@@ -65,7 +65,7 @@
                         <Label Content="Frequency"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="40,0,0,0"/>
                         <Grid>
                             <Button x:Name="btnFreqAdd" Content="+" Width="40" Height="40" HorizontalAlignment="Center" Margin="300,0,0,0" Click="btnFreqAdd_Click" ></Button>
-                            <TextBox x:Name="txtbxFreq" Text="14" Width="240" HorizontalAlignment="Center"></TextBox>
+                            <TextBox x:Name="txtbxFreq" Text="" Width="240" HorizontalAlignment="Center"></TextBox>
                             <Button x:Name="btnFreqSub" Content="-" Width="40" Height="40" HorizontalAlignment="Center" Margin="0,0,300,0" Click="btnFreqSub_Click" ></Button>
 
 
