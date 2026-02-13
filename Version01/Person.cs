@@ -16,6 +16,15 @@ namespace Version01
         public DateTime LastContacted { get; set; }
         public int Frequency { get; set; }
         public ObservableCollection<string> Messages { get; set; }
+
+        public DateTime DueDate
+        {
+            get
+            {
+                if ()
+                return LastContacted.Date.AddDays(Frequency);
+            }
+        }
         
 
         protected int lastID = 1;
@@ -37,7 +46,8 @@ namespace Version01
             Frequency = frequency;
             Messages = messages;
 
-            LastContacted = DateTime.Now;
+            //Set to very specific date that is recognised as never contacted
+            LastContacted = new DateTime(1,1,1);
             PersonID = lastID;
             lastID++;
         }
