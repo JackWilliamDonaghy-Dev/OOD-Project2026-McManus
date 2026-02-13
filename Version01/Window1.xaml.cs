@@ -24,11 +24,17 @@ namespace Version01
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAddMessage_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = this.Owner as MainWindow;
 
-            
+            main.messages.Add($"{main.messages.Count + 1}: {txtbxNewMessage.Text}");
+            txtbxNewMessage.Clear();
         }
     }
 }

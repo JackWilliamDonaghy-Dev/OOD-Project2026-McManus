@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Version01
         //error logging initialization
         log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-
+        internal ObservableCollection<string> messages = new ObservableCollection<string>();
 
         // Frequency logic
         private void btnFreqSub_Click(object sender, RoutedEventArgs e)
@@ -46,10 +47,22 @@ namespace Version01
         // Messages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
+            // new window and connection set
             Window1 win1 = new Window1();
             win1.Owner = this;
             win1.ShowDialog();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            lsbxMessages.ItemsSource = messages;
+
+        }
+
+        private void btnAddPerson_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

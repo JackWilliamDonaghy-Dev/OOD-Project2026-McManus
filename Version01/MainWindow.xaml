@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Version01"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Version01.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow"
-        Height="750"
-        Width="390"
-        Style="{StaticResource MaterialDesignWindow}">
+        Title="MainWindow" Height="750" Width="390"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource MaterialDesignWindow}"
+        Loaded="Window_Loaded">
 
     <Grid>
         <TabControl TabStripPlacement="Bottom">
@@ -74,15 +74,13 @@
                         
                     </StackPanel>
                     
-                    <StackPanel Grid.Row="2" Margin="0,105,0,0" Grid.RowSpan="2">
+                    <StackPanel Grid.Row="3">
                         <Label Content="Messages"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="40,0,0,0"/>
-                        <!--A space that can have text boxes added-->
-                        <StackPanel x:Name="aaa">
-                            
-                        </StackPanel>
-                        <Button Content="New Message" Click="Button_Click"/>
-
+                        <ListBox x:Name="lsbxMessages"></ListBox>
+                        <Button Content="New Message" Width="340" Click="Button_Click"/>
                     </StackPanel>
+
+                    <Button Content="Add Person" Width="340" HorizontalAlignment="Center" Click="btnAddPerson_Click" VerticalAlignment="Bottom" Grid.Row="5" Margin="20"/>
 
 
 
