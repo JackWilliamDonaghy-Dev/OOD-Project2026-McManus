@@ -41,7 +41,27 @@ namespace Version01
             lsbxMessages.ItemsSource = messages;
             lsbxPeople.ItemsSource = people;
 
-            
+            LoadPeople();
+        }
+
+        private void LoadPeople()
+        {
+            if (File.Exists("../../people.json"))
+            {
+                string json = File.ReadAllText("../../people.json");
+
+                var loadedPeople = JsonSerializer.Deserialize<ObservableCollection<Person>>(json);
+
+                if (loadedPeople != null)
+                {
+                    people.Clear();
+
+                    foreach (var p in loadedPeople)
+                    {
+                        people.Add(p);
+                    }
+                }
+            }
         }
 
         // Frequency logic
@@ -109,7 +129,7 @@ namespace Version01
             };
 
             string jsonString2 = JsonSerializer.Serialize(people, options);
-            File.WriteAllText("people.json", jsonString2);
+            File.WriteAllText("../../people.json", jsonString2);
 
 
             //Code below commented out but shows dealing with single object serialization

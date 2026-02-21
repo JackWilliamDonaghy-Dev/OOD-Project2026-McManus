@@ -147,6 +147,7 @@
     </EmbeddedResource>
     <None Include="log4net.config" />
     <None Include="packages.config" />
+    <None Include="people.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

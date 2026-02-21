@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Version01
 {
-    internal class Person
+    public class Person
     {
         public int PersonID { get; set; }
         public string Name { get; set; }
@@ -26,7 +26,7 @@ namespace Version01
         }
         
 
-        protected int lastID = 1;
+        private static int lastID = 1;
 
         public Person(string name, int frequency, ObservableCollection<string> messages, DateTime lastContacted)
         {
