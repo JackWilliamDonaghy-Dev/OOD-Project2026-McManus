@@ -67,7 +67,8 @@ namespace Version01
 
         public override string ToString()
         {
-            return $"{this.Name} - {this.Frequency}";
+            int due = DueDate.Day - LastContacted.Day > 0 ? DueDate.Day - LastContacted.Day : 0;
+            return $"{this.Name} - {due}";
         }
 
 

@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Schema;
+using System.IO;
+using System.Text.Json;
 
 namespace Version01
 {
@@ -99,17 +101,25 @@ namespace Version01
             return difference.TotalDays;
         }
 
-        private void btnContacted_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Person person = lsbxPeople.SelectedItem as Person;
-            if (person != null)
+            JsonSerializerOptions options = new JsonSerializerOptions
             {
+                WriteIndented = true
+            };
 
-            }
-            else
-            {
-                person.LastContacted = DateTime.Now;
-            }
+            string jsonString2 = JsonSerializer.Serialize(people, options);
+            File.WriteAllText("people.json", jsonString2);
+
+
+            //Code below commented out but shows dealing with single object serialization
+            //Team team = CreateTeam("Warriors");
+            //string jsonString = JsonSerializer.Serialize(team, options);
+            //File.WriteAllText("team.json", jsonString);
+
+            //Code below commented out but shows dealing with list of objects serialization
+            //Team team2 = CreateTeam("Dolphins");
+            //List<Team> teams = new List<Team> { team, team2 };
         }
 
         private void lsbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
