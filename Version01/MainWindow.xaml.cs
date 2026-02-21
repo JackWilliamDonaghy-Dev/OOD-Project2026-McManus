@@ -72,7 +72,7 @@ namespace Version01
             // Create person and add to People list on main list page
             string name = txtbxName.Text;
             int frequency = int.Parse(txtbxFreq.Text);
-            ObservableCollection<string> personMessages = messages;
+            ObservableCollection<string> personMessages = new ObservableCollection<string>(messages);
             Person person = new Person(name, frequency, personMessages);
             people.Add(person);
 
