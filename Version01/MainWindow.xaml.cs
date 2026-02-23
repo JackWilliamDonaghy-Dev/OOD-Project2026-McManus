@@ -44,7 +44,7 @@ namespace Version01
             LoadPeople();
         }
 
-        private void LoadPeople()
+        public void LoadPeople()
         {
             if (File.Exists("../../people.json"))
             {
@@ -62,6 +62,22 @@ namespace Version01
                     }
                 }
             }
+        }
+
+        public void SavePeople()
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            string jsonString2 = JsonSerializer.Serialize(people, options);
+            File.WriteAllText("../../people.json", jsonString2);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SavePeople();
         }
 
         // Frequency logic
@@ -101,6 +117,12 @@ namespace Version01
             txtbxFreq.Text = "14";
             messages.Clear();
 
+            sortPeopleList();
+
+        }
+
+        public void sortPeopleList()
+        {
             //Sort people
             var sorted = people
                         .OrderByDescending(p => GetUrgency(p))
@@ -108,7 +130,6 @@ namespace Version01
                         .ToList();
             people = new ObservableCollection<Person>(sorted);
             lsbxPeople.ItemsSource = people;
-
         }
 
         //Manage People list
@@ -121,33 +142,18 @@ namespace Version01
             return difference.TotalDays;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            JsonSerializerOptions options = new JsonSerializerOptions
-            {
-                WriteIndented = true
-            };
 
-            string jsonString2 = JsonSerializer.Serialize(people, options);
-            File.WriteAllText("../../people.json", jsonString2);
-
-
-            //Code below commented out but shows dealing with single object serialization
-            //Team team = CreateTeam("Warriors");
-            //string jsonString = JsonSerializer.Serialize(team, options);
-            //File.WriteAllText("team.json", jsonString);
-
-            //Code below commented out but shows dealing with list of objects serialization
-            //Team team2 = CreateTeam("Dolphins");
-            //List<Team> teams = new List<Team> { team, team2 };
-        }
 
         private void lsbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // new window and connection set
-            PersonDetailsWindow win2 = new PersonDetailsWindow();
-            win2.Owner = this;
-            win2.ShowDialog();
+            Person selectedPerson = lsbxPeople.SelectedItem as Person;
+            if (selectedPerson != null)
+            {
+                PersonDetailsWindow win2 = new PersonDetailsWindow();
+                win2.Owner = this;
+                win2.ShowDialog();
+            }
         }
     }
 }

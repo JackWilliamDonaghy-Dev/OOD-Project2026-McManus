@@ -24,18 +24,44 @@ namespace Version01
             InitializeComponent();
         }
 
+        internal Person mainPerson = new Person();
+        internal MainWindow main = new MainWindow();
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainWindow main = this.Owner as MainWindow;
+            main = this.Owner as MainWindow;
 
-            Person person = main.lsbxPeople.SelectedItem as Person;
-            txtblckName.Text = person.Name;
-            lsbxMessages.ItemsSource = person.Messages;
+            mainPerson = main.lsbxPeople.SelectedItem as Person;
+            txtblckName.Text = mainPerson.Name;
+            lsbxMessages.ItemsSource = mainPerson.Messages;
+
+            //Add Last Contacted loadup
+            if (mainPerson.LastContacted == new DateTime(1, 1, 1))
+            {
+                txtblckLastContact.Text = "Never Contacted";
+            }
+            else if (mainPerson.LastContacted.Date == DateTime.Now.Date)
+            {
+                txtblckLastContact.Text = "Today";
+            }
+            else
+            {
+                txtblckLastContact.Text = mainPerson.LastContacted.ToString();
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            main.SavePeople();
+            main.LoadPeople();
             Close();
+        }
+
+        private void btnContacted_Click(object sender, RoutedEventArgs e)
+        {
+            //Add change Contacted last
+            mainPerson.LastContacted = DateTime.Now;
+            txtblckLastContact.Text = "Today";
         }
     }
 }
