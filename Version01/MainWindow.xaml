@@ -28,11 +28,24 @@
                 </TabItem.Header>
 
                 <Grid>
-                    <ListBox x:Name="lsbxPeople" SelectionChanged="lsbxPeople_SelectionChanged"/>
-                    <Button Content="Save" Width="340" HorizontalAlignment="Center" Click="btnSave_Click" VerticalAlignment="Bottom" Grid.Row="5" Margin="20" Style="{DynamicResource MaterialDesignRaisedSecondaryButton}"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <ListBox x:Name="lsbxPeople" Grid.Row="0" SelectionChanged="lsbxPeople_SelectionChanged"/>
+
+                    <Grid Grid.Row="1">
+                        <Button x:Name="btnPersonDetails" Content="Details" Click="btnPersonDetails_Click" Width="175" Height="56" HorizontalAlignment="Left" Margin="20,0,0,20" Style="{DynamicResource MaterialDesignRaisedSecondaryButton}" FontFamily="Roboto Black" FontWeight="Bold" FontSize="36" Foreground="Gray"/>
+                        <Button Click="btnQuickContact_Click" Width="60" Height="60" HorizontalAlignment="Right" Margin="0,0,100,20" Style="{DynamicResource MaterialDesignFloatingActionButton}">
+                            <materialDesign:PackIcon x:Name="btnQuickContact" Kind="SendCheck" Width="40" Height="40" Foreground="Gray"/>
+                        </Button>
+                        <Button  Width="60" Height="60" HorizontalAlignment="Right" Margin="0,0,20,20" Style="{DynamicResource MaterialDesignFloatingActionButton}">
+                            <materialDesign:PackIcon x:Name="btnAccountEdit" Kind="AccountBoxEditOutline" Width="40" Height="40" Foreground="Gray"/>
+                        </Button>
+                    </Grid>
                 </Grid>
-                
+
             </TabItem>
 
             <TabItem>
@@ -73,10 +86,10 @@
 
 
                         </Grid>
-                        
-                        
+
+
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Row="3">
                         <Label Content="Messages"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="40,0,0,0"/>
                         <ListBox x:Name="lsbxMessages"></ListBox>

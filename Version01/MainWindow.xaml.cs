@@ -34,7 +34,7 @@ namespace Version01
 
         internal ObservableCollection<string> messages = new ObservableCollection<string>();
         internal ObservableCollection<Person> people = new ObservableCollection<Person>();
-
+        internal Person selectedPerson = null;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -62,6 +62,11 @@ namespace Version01
                     }
                 }
             }
+
+            lsbxPeople.SelectedIndex = -1;
+
+            // Refresh Clickable Buttons
+            HomeScreenUsabilityFeatures();
         }
 
         public void SavePeople()
@@ -146,14 +151,45 @@ namespace Version01
 
         private void lsbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // new window and connection set
-            Person selectedPerson = lsbxPeople.SelectedItem as Person;
+            // Person is now applicable
+            selectedPerson = lsbxPeople.SelectedItem as Person;
+
+            // Change buttons to look clickable
+            HomeScreenUsabilityFeatures();
+        }
+
+        public void HomeScreenUsabilityFeatures()
+        {
+            // Change buttons to look clickable
+            if (selectedPerson != null)
+            {
+                btnPersonDetails.Foreground = Brushes.White;
+                btnAccountEdit.Foreground = Brushes.White;
+                btnQuickContact.Foreground = Brushes.White;
+            }
+            else
+            {
+                btnPersonDetails.Foreground = Brushes.Gray;
+                btnAccountEdit.Foreground = Brushes.Gray;
+                btnQuickContact.Foreground = Brushes.Gray;
+            }
+        }
+
+        private void btnPersonDetails_Click(object sender, RoutedEventArgs e)
+        {
             if (selectedPerson != null)
             {
                 PersonDetailsWindow win2 = new PersonDetailsWindow();
                 win2.Owner = this;
                 win2.ShowDialog();
             }
+        }
+
+        private void btnQuickContact_Click(object sender, RoutedEventArgs e)
+        {
+            selectedPerson.LastContacted = DateTime.Now;
+            SavePeople();
+            LoadPeople();
         }
     }
 }
