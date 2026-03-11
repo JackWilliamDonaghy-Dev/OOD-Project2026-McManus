@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Version01
         public DateTime LastContacted { get; set; }
         public int Frequency { get; set; }
 
+        [NotMapped]
         public ObservableCollection<string> Messages { get; set; } = new ObservableCollection<string>();
 
 
@@ -24,26 +26,21 @@ namespace Version01
         public string CombinedMessages
         {
             //convert the ob coll to a comma delimited string
-            get
-            {
-                string _combinedMessages = "";
-                foreach (var message in Messages)
-                {
-                    _combinedMessages += message.ToString();
-                    _combinedMessages += ",";
-                }
-
-                //_combinedMessages.Remove(_combinedMessages.Length - 1, combinedMessages.Length);
-                return _combinedMessages;
-            }
+            get => string.Join(",", Messages);
 
             //convert the comma delimited string to an observable collection
             set
             {
                 combinedMessages = value;
+                Messages.Clear();
+
+                if (string.IsNullOrWhiteSpace(combinedMessages))
+                {
+                    return;
+                }
 
                 //break into parts and add to ob collection
-                string[] indivMessages = combinedMessages.Split(',');
+                string[] indivMessages = combinedMessages.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var message in indivMessages)
                 {
                     Messages.Add(message);
@@ -55,6 +52,7 @@ namespace Version01
         }
 
 
+        [NotMapped]
         public DateTime DueDate
         {
             get
