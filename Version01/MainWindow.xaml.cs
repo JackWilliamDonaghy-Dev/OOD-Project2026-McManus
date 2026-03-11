@@ -62,22 +62,10 @@ namespace Version01
 
         public void LoadPeople()
         {
-            if (File.Exists("../../people.json"))
-            {
-                string json = File.ReadAllText("../../people.json");
+            var query = from p in people
+                        select p;
 
-                var loadedPeople = JsonSerializer.Deserialize<ObservableCollection<Person>>(json);
-
-                if (loadedPeople != null)
-                {
-                    people.Clear();
-
-                    foreach (var p in loadedPeople)
-                    {
-                        people.Add(p);
-                    }
-                }
-            }
+            var results = query.ToList();
 
             lsbxPeople.SelectedIndex = -1;
 
@@ -94,6 +82,10 @@ namespace Version01
 
             string jsonString2 = JsonSerializer.Serialize(people, options);
             File.WriteAllText("../../people.json", jsonString2);
+
+            //Saving to Database instead
+
+
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
