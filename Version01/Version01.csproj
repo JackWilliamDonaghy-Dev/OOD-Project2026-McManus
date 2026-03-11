@@ -107,9 +107,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Migrations\202603111407310_InitialCreate.cs" />
-    <Compile Include="Migrations\202603111407310_InitialCreate.Designer.cs">
-      <DependentUpon>202603111407310_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202603111501129_InitialCreate.cs" />
+    <Compile Include="Migrations\202603111501129_InitialCreate.Designer.cs">
+      <DependentUpon>202603111501129_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonDetailsWindow.xaml.cs">
@@ -154,8 +154,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202603111407310_InitialCreate.resx">
-      <DependentUpon>202603111407310_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202603111501129_InitialCreate.resx">
+      <DependentUpon>202603111501129_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -112,7 +112,7 @@ namespace Version01
 
     public class PersonData : DbContext
     {
-        public PersonData() : base("People2026_1447") { }
+        public PersonData() : base("People2026_03_11_1500") { }
 
         public DbSet<Person> People { get; set; }
     }
