@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Xml.Schema;
 using System.IO;
 using System.Text.Json;
+using System.CodeDom.Compiler;
 
 namespace Version01
 {
@@ -41,7 +42,22 @@ namespace Version01
             lsbxMessages.ItemsSource = messages;
             lsbxPeople.ItemsSource = people;
 
-            LoadPeople();
+            //LoadPeople();
+
+            PersonData db = new PersonData();
+
+            var query = from p in db.People
+                        select p;
+
+            var results = query.ToList();
+
+            people.Clear();
+            
+            foreach (var r in results)
+            {
+                people.Add(r);
+            }
+
         }
 
         public void LoadPeople()
