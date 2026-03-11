@@ -14,8 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Schema;
-using System.IO;
-using System.Text.Json;
 using System.CodeDom.Compiler;
 
 namespace Version01
@@ -42,40 +40,20 @@ namespace Version01
             lsbxMessages.ItemsSource = messages;
             lsbxPeople.ItemsSource = people;
 
-            //LoadPeople();
-
-            PersonData db = new PersonData();
-
-            var query = from p in db.People
-                        select p;
-
-            var results = query.ToList();
-
-            people.Clear();
-            
-            foreach (var r in results)
-            {
-                people.Add(r);
-            }
-
+            LoadPeople();
         }
 
         public void LoadPeople()
         {
-            if (File.Exists("../../people.json"))
+            using (PersonData db = new PersonData())
             {
-                string json = File.ReadAllText("../../people.json");
+                var results = db.People.ToList();
 
-                var loadedPeople = JsonSerializer.Deserialize<ObservableCollection<Person>>(json);
+                people.Clear();
 
-                if (loadedPeople != null)
+                foreach (var person in results)
                 {
-                    people.Clear();
-
-                    foreach (var p in loadedPeople)
-                    {
-                        people.Add(p);
-                    }
+                    people.Add(person);
                 }
             }
 
@@ -87,13 +65,41 @@ namespace Version01
 
         public void SavePeople()
         {
-            JsonSerializerOptions options = new JsonSerializerOptions
+            using (PersonData db = new PersonData())
             {
-                WriteIndented = true
-            };
+                foreach (var person in people.ToList())
+                {
+                    if (person.PersonID == 0)
+                    {
+                        db.People.Add(person);
+                        continue;
+                    }
 
-            string jsonString2 = JsonSerializer.Serialize(people, options);
-            File.WriteAllText("../../people.json", jsonString2);
+                    var existingPerson = db.People.Find(person.PersonID);
+
+                    if (existingPerson == null)
+                    {
+                        db.People.Add(person);
+                    }
+                    else
+                    {
+                        db.Entry(existingPerson).CurrentValues.SetValues(person);
+                    }
+                }
+
+                var removedPeople = db.People
+                    .Where(dbPerson => !people.Any(person => person.PersonID == dbPerson.PersonID))
+                    .ToList();
+
+                foreach (var removedPerson in removedPeople)
+                {
+                    db.People.Remove(removedPerson);
+                }
+
+                db.SaveChanges();
+            }
+
+            LoadPeople();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -139,7 +145,7 @@ namespace Version01
             messages.Clear();
 
             sortPeopleList();
-
+            SavePeople();
         }
 
         public void sortPeopleList()
