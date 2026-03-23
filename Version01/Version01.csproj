@@ -107,6 +107,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditPersonWindow.xaml.cs">
+      <DependentUpon>EditPersonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202603111501129_InitialCreate.cs" />
     <Compile Include="Migrations\202603111501129_InitialCreate.Designer.cs">
       <DependentUpon>202603111501129_InitialCreate.cs</DependentUpon>
@@ -118,6 +121,10 @@
     <Compile Include="AddMessagesWindow.xaml.cs">
       <DependentUpon>AddMessagesWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="EditPersonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

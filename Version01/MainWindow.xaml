@@ -40,7 +40,7 @@
                         <Button Click="btnQuickContact_Click" Width="60" Height="60" HorizontalAlignment="Right" Margin="0,0,100,20" Style="{DynamicResource MaterialDesignFloatingActionButton}">
                             <materialDesign:PackIcon x:Name="btnQuickContact" Kind="SendCheck" Width="40" Height="40" Foreground="Gray"/>
                         </Button>
-                        <Button  Width="60" Height="60" HorizontalAlignment="Right" Margin="0,0,20,20" Style="{DynamicResource MaterialDesignFloatingActionButton}">
+                        <Button Click="btn_EditPerson"  Width="60" Height="60" HorizontalAlignment="Right" Margin="0,0,20,20" Style="{DynamicResource MaterialDesignFloatingActionButton}">
                             <materialDesign:PackIcon x:Name="btnAccountEdit" Kind="AccountBoxEditOutline" Width="40" Height="40" Foreground="Gray"/>
                         </Button>
                     </Grid>
@@ -93,7 +93,7 @@
                     <StackPanel Grid.Row="3">
                         <Label Content="Messages"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="40,0,0,0"/>
                         <ListBox x:Name="lsbxMessages"></ListBox>
-                        <Button Content="New Message" Width="340" Click="Button_Click"/>
+                        <Button Content="New Message" Width="340" Click="btnAddMessage_Click"/>
                     </StackPanel>
 
                     <Button Content="Add Person" Width="340" HorizontalAlignment="Center" Click="btnAddPerson_Click" VerticalAlignment="Bottom" Grid.Row="5" Margin="20" Style="{DynamicResource MaterialDesignRaisedSecondaryButton}"/>

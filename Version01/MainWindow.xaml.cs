@@ -120,7 +120,7 @@ namespace Version01
             txtbxFreq.Text = (freq + 1).ToString();
         }
         // Messages
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnAddMessage_Click(object sender, RoutedEventArgs e)
         {
             
             // new window and connection set
@@ -211,6 +211,17 @@ namespace Version01
         {
             selectedPerson.LastContacted = DateTime.Now;
             SavePeople();
+        }
+
+        private void btn_EditPerson(object sender, RoutedEventArgs e)
+        {
+            //Open edit person window opened
+            if (selectedPerson != null)
+            {
+                EditPersonWindow win2 = new EditPersonWindow();
+                win2.Owner = this;
+                win2.ShowDialog();
+            }
         }
     }
 }
