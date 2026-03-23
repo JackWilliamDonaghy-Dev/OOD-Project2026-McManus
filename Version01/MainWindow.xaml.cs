@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -87,8 +87,13 @@ namespace Version01
                     }
                 }
 
+                var currentPersonIds = people
+                    .Where(person => person.PersonID != 0)
+                    .Select(person => person.PersonID)
+                    .ToList();
+
                 var removedPeople = db.People
-                    .Where(dbPerson => !people.Any(person => person.PersonID == dbPerson.PersonID))
+                    .Where(dbPerson => !currentPersonIds.Contains(dbPerson.PersonID))
                     .ToList();
 
                 foreach (var removedPerson in removedPeople)
@@ -100,11 +105,6 @@ namespace Version01
             }
 
             LoadPeople();
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            SavePeople();
         }
 
         // Frequency logic
@@ -211,7 +211,6 @@ namespace Version01
         {
             selectedPerson.LastContacted = DateTime.Now;
             SavePeople();
-            LoadPeople();
         }
     }
 }

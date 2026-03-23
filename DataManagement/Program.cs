@@ -22,14 +22,18 @@ namespace DataManagement
                 testMessages.Add("Hello");
                 testMessages.Add("What the dog doing");
                 testMessages.Add("Beanz");
+                Console.WriteLine("Person created");
 
                 Person p1 = new Person() {PersonID = 1, Frequency = 14, LastContacted = DateTime.Now, Name = "Tom", CombinedMessages = "Beanz,Hi,Yo" };
 
                 //add to table
                 db.People.Add(p1);
+                Console.WriteLine("Person added to DB");
 
                 //save changes
                 db.SaveChanges();
+                Console.WriteLine("Database saved");
+
 
 
             }
