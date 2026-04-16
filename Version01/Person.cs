@@ -106,7 +106,7 @@ namespace Version01
             if (DueDate == null || LastContacted == null)
                 return $"{Name} - Never";
 
-            int due = (DueDate.Value - LastContacted.Value).Days-13;
+            int due = (DueDate.Value - LastContacted.Value).Days+1;
             due = due > 0 ? due : 0;
 
             return $"{Name} - {due}";
