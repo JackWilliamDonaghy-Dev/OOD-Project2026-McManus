@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,22 +20,33 @@ namespace Version01
     /// </summary>
     public partial class AddMessagesWindow : Window
     {
-        public AddMessagesWindow()
-        {
-            InitializeComponent();
-        }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        private ObservableCollection<string> messages;
+
+        // For MainWindow (creating new person)
+        public AddMessagesWindow(ObservableCollection<string> messages)
+        {
+            InitializeComponent();
+            this.messages = messages;
+        }
+
+        // For EditPersonWindow (existing person)
+        public AddMessagesWindow(Person person)
+        {
+            InitializeComponent();
+            this.messages = person.Messages;
+        }
+
         private void btnAddMessage_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = this.Owner as MainWindow;
-
-            main.messages.Add(txtbxNewMessage.Text);
+            messages.Add(txtbxNewMessage.Text);
             txtbxNewMessage.Clear();
         }
+        
     }
 }

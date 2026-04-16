@@ -114,6 +114,10 @@
     <Compile Include="Migrations\202603111501129_InitialCreate.Designer.cs">
       <DependentUpon>202603111501129_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202604161006430_FixDateIssue.cs" />
+    <Compile Include="Migrations\202604161006430_FixDateIssue.Designer.cs">
+      <DependentUpon>202604161006430_FixDateIssue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonDetailsWindow.xaml.cs">
       <DependentUpon>PersonDetailsWindow.xaml</DependentUpon>
@@ -163,6 +167,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202603111501129_InitialCreate.resx">
       <DependentUpon>202603111501129_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604161006430_FixDateIssue.resx">
+      <DependentUpon>202604161006430_FixDateIssue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

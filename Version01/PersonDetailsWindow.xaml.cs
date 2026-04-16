@@ -36,11 +36,11 @@ namespace Version01
             lsbxMessages.ItemsSource = mainPerson.Messages;
 
             //Add Last Contacted loadup
-            if (mainPerson.LastContacted == new DateTime(1, 1, 1))
+            if (mainPerson.LastContacted == null)
             {
                 txtblckLastContact.Text = "Never Contacted";
             }
-            else if (mainPerson.LastContacted.Date == DateTime.Now.Date)
+            else if (mainPerson.LastContacted?.Date == DateTime.Now.Date)
             {
                 txtblckLastContact.Text = "Today";
             }

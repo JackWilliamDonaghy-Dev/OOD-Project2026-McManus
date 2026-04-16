@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Version01"
         mc:Ignorable="d"
         Title="AddMessagesWindow" Height="400" Width="200"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
             <TextBox x:Name="txtbxNewMessage" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170" Height="120"/>

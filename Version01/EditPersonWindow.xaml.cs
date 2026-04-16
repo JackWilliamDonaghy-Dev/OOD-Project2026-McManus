@@ -39,11 +39,11 @@ namespace Version01
             messages = mainPerson.Messages;
 
             //Add Last Contacted loadup
-            if (mainPerson.LastContacted == new DateTime(1, 1, 1))
+            if (mainPerson.LastContacted == null)
             {
                 txtblckLastContact.Text = "Never Contacted";
             }
-            else if (mainPerson.LastContacted.Date == DateTime.Now.Date)
+            else if (mainPerson.LastContacted?.Date == DateTime.Now.Date)
             {
                 txtblckLastContact.Text = "Today";
             }
@@ -57,18 +57,10 @@ namespace Version01
         {
 
             // new window and connection set
-            AddMessagesWindow win1 = new AddMessagesWindow();
-            win1.Owner = this;
-            win1.ShowDialog();
+            AddMessagesWindow win3 = new AddMessagesWindow(mainPerson);
+            win3.ShowDialog();
         }
-
-        //Temporaryyy for testing
-        private void btnContacted_Click(object sender, RoutedEventArgs e)
-        {
-            //Add change Contacted last
-            mainPerson.LastContacted = DateTime.Now;
-            txtblckLastContact.Text = "Today";
-        }
+    
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -77,6 +69,14 @@ namespace Version01
 
 
             //classic save all work
+            main.SavePeople();
+            main.LoadPeople();
+            Close();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            main.people.Remove(mainPerson);
             main.SavePeople();
             main.LoadPeople();
             Close();

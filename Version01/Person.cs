@@ -15,7 +15,7 @@ namespace Version01
     {
         public int PersonID { get; set; }
         public string Name { get; set; }
-        public DateTime LastContacted { get; set; }
+        public DateTime? LastContacted { get; set; }
         public int Frequency { get; set; }
 
         [NotMapped]
@@ -53,16 +53,21 @@ namespace Version01
 
 
         [NotMapped]
-        public DateTime DueDate
+        public DateTime? DueDate
         {
             get
             {
-                return LastContacted.Date.AddDays(Frequency);
+               //checks if empty
+            if (LastContacted == null)
+                return null;
+
+               //checks if empty
+            return LastContacted.Value.Date.AddDays(Frequency);
+                
             }
         }
 
 
-        private static int lastID = 1;
 
         public Person(string name, int frequency, ObservableCollection<string> messages, DateTime lastContacted)
         {
@@ -71,8 +76,6 @@ namespace Version01
             Messages = messages;
             LastContacted = lastContacted;
 
-            PersonID = lastID;
-            lastID++;
         }
 
         public Person(string name, int frequency, ObservableCollection<string> messages)
@@ -81,10 +84,8 @@ namespace Version01
             Frequency = frequency;
             Messages = messages;
 
-            //Set to very specific date that is recognised as never contacted
-            LastContacted = new DateTime(1, 1, 1);
-            PersonID = lastID;
-            lastID++;
+            //Set to null that is recognised as never contacted
+            LastContacted = null;
         }
 
         public Person(string name, int frequency)
@@ -94,17 +95,21 @@ namespace Version01
 
             Messages = new ObservableCollection<string>();
             LastContacted = DateTime.Now;
-            PersonID = lastID;
-            lastID++;
         }
 
 
         public Person() { }
 
+
         public override string ToString()
         {
-            int due = DueDate.Day - LastContacted.Day > 0 ? DueDate.Day - LastContacted.Day : 0;
-            return $"{this.Name} - {due}";
+            if (DueDate == null || LastContacted == null)
+                return $"{Name} - Never";
+
+            int due = (DueDate.Value - LastContacted.Value).Days-13;
+            due = due > 0 ? due : 0;
+
+            return $"{Name} - {due}";
         }
 
 

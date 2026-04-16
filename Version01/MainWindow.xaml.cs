@@ -72,20 +72,23 @@ namespace Version01
                     if (person.PersonID == 0)
                     {
                         db.People.Add(person);
-                        continue;
-                    }
-
-                    var existingPerson = db.People.Find(person.PersonID);
-
-                    if (existingPerson == null)
-                    {
-                        db.People.Add(person);
                     }
                     else
                     {
-                        db.Entry(existingPerson).CurrentValues.SetValues(person);
+                        var existingPerson = db.People.Find(person.PersonID);
+
+                        if (existingPerson == null)
+                        {
+                            db.People.Add(person);
+                        }
+                        else
+                        {
+                            db.Entry(existingPerson).CurrentValues.SetValues(person);
+                        }
                     }
                 }
+
+                db.SaveChanges();
 
                 var currentPersonIds = people
                     .Where(person => person.PersonID != 0)
@@ -122,10 +125,7 @@ namespace Version01
         // Messages
         private void btnAddMessage_Click(object sender, RoutedEventArgs e)
         {
-            
-            // new window and connection set
-            AddMessagesWindow win1 = new AddMessagesWindow();
-            win1.Owner = this;
+            AddMessagesWindow win1 = new AddMessagesWindow(messages);
             win1.ShowDialog();
         }
 
@@ -163,9 +163,14 @@ namespace Version01
 
         private double GetUrgency(Person person)
         {
-            var due = person.DueDate.Date;
+            if (person.DueDate == null)
+                return 0; // or maybe -1 depending on meaning
+
+            var due = person.DueDate.Value.Date;
             var difference = DateTime.Now - due;
+
             log.Info($"due -{due} now -{DateTime.Now} difference -{difference}");
+
             return difference.TotalDays;
         }
 
