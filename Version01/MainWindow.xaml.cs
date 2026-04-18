@@ -31,6 +31,7 @@ namespace Version01
         //error logging initialization
         log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+
         internal ObservableCollection<string> messages = new ObservableCollection<string>();
         internal ObservableCollection<Person> people = new ObservableCollection<Person>();
         internal Person selectedPerson = null;
@@ -58,6 +59,8 @@ namespace Version01
             }
 
             lsbxPeople.SelectedIndex = -1;
+
+            sortPeopleList();
 
             // Refresh Clickable Buttons
             HomeScreenUsabilityFeatures();
@@ -132,20 +135,38 @@ namespace Version01
 
         private void btnAddPerson_Click(object sender, RoutedEventArgs e)
         {
+            NotificationService notificationService = new NotificationService(this);
             // Create person and add to People list on main list page
             string name = txtbxName.Text;
-            int frequency = int.Parse(txtbxFreq.Text);
-            ObservableCollection<string> personMessages = new ObservableCollection<string>(messages);
-            Person person = new Person(name, frequency, personMessages);
-            people.Add(person);
+            if (name.Length > 0)
+            {
+                int frequency = int.Parse(txtbxFreq.Text);
+                if (frequency > 0)
+                {
+                    ObservableCollection<string> personMessages = new ObservableCollection<string>(messages);
+                    Person person = new Person(name, frequency, personMessages);
+                    people.Add(person);
 
-            //clear/reset add window values
-            txtbxName.Text = "";
-            txtbxFreq.Text = "14";
-            messages.Clear();
+                    //clear/reset add window values
+                    txtbxName.Text = "";
+                    txtbxFreq.Text = "14";
+                    messages.Clear();
 
-            sortPeopleList();
-            SavePeople();
+                    sortPeopleList();
+                    SavePeople();
+                
+                    notificationService.ShowSuccess($"{name} has been added");
+
+                }
+                else
+                {
+                    notificationService.ShowWarning("Frequency below 1");
+                }
+            }
+            else
+            {
+                notificationService.ShowWarning($"No name entered");
+            }
         }
 
         public void sortPeopleList()

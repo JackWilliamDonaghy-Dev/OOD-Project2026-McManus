@@ -44,8 +44,12 @@ namespace Version01
 
         private void btnAddMessage_Click(object sender, RoutedEventArgs e)
         {
+            NotificationService notificationService = new NotificationService(this);
+
             messages.Add(txtbxNewMessage.Text);
+            notificationService.ShowSuccess(txtbxNewMessage.Text + " - added");
             txtbxNewMessage.Clear();
+
         }
         
     }

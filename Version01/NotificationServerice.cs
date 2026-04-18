@@ -1,13 +1,16 @@
-﻿/*
+﻿
 using System;
 using System.Windows;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
 using ToastNotifications.Position;
 
 namespace Version01
 {
-    internal class NotificationService
+
+
+    public class NotificationService
     {
         private Notifier notifier;
 
@@ -22,40 +25,24 @@ namespace Version01
                     offsetY: 10);
 
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                    notificationLifetime: TimeSpan.FromSeconds(3),
-                    maximumNotificationCount: 5);
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(3));
             });
         }
 
         public void ShowSuccess(string message)
         {
-            notifier.Notify(() => new NotificationContent
-            {
-                Title = "Success",
-                Message = message,
-                Type = NotificationType.Success
-            });
+            notifier.ShowSuccess(message);
         }
 
         public void ShowWarning(string message)
         {
-            notifier.Notify(() => new NotificationContent
-            {
-                Title = "Warning",
-                Message = message,
-                Type = NotificationType.Warning
-            });
+            notifier.ShowWarning(message);
         }
 
         public void ShowError(string message)
         {
-            notifier.Notify(() => new NotificationContent
-            {
-                Title = "Error",
-                Message = message,
-                Type = NotificationType.Error
-            });
+            notifier.ShowError(message);
         }
     }
 }
-*/

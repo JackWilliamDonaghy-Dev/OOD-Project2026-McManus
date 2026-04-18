@@ -79,6 +79,7 @@ namespace Version01
             main.people.Remove(mainPerson);
             main.SavePeople();
             main.LoadPeople();
+            
             Close();
         }
     }
